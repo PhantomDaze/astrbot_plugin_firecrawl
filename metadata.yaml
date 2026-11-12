@@ -1,0 +1,6 @@
+name: astrbot_plugin_firecrawl
+display_name: Firecrawl 自建实例
+desc: 把自建 Firecrawl 接入 AstrBot，提供联网搜索与网页正文提取两个 LLM 工具，并附带 /firecrawl 调试命令。
+version: v0.1.0
+author: PhantomDaze
+repo: https://github.com/PhantomDaze/astrbot_plugin_firecrawl

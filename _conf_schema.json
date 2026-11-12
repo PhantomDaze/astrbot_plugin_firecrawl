@@ -1,0 +1,70 @@
+{
+  "base_url": {
+    "description": "Firecrawl 实例地址",
+    "type": "string",
+    "default": "http://127.0.0.1:3002",
+    "hint": "自建实例默认监听 3002 端口，填写形如 http://192.168.1.10:3002 的地址。AstrBot 运行在 Docker 中时，127.0.0.1 指向容器自身，请改用宿主机内网 IP 或 host.docker.internal。"
+  },
+  "api_keys": {
+    "description": "API Key 列表",
+    "type": "list",
+    "default": [],
+    "secret": true,
+    "hint": "自建实例在 USE_DB_AUTHENTICATION=false 时不需要鉴权，留空即可。填写多个 Key 时会轮流使用并在失败时自动切换。"
+  },
+  "api_version": {
+    "description": "API 版本",
+    "type": "string",
+    "default": "auto",
+    "options": ["auto", "v2", "v1"],
+    "hint": "auto 会先请求 /v2，遇到 404 再回退到 /v1，适用于不确定实例版本的情况。"
+  },
+  "request_timeout": {
+    "description": "请求超时（秒）",
+    "type": "int",
+    "default": 60,
+    "hint": "搜索与网页提取共用的整体超时时间，抓取较慢的站点可以调大。"
+  },
+  "search_limit": {
+    "description": "默认搜索结果数量",
+    "type": "int",
+    "default": 5,
+    "hint": "模型调用 firecrawl_search 且未指定数量时使用，最终会被限制在 1-20。"
+  },
+  "default_format": {
+    "description": "网页提取默认格式",
+    "type": "string",
+    "default": "markdown",
+    "options": ["markdown", "html", "rawHtml", "summary"]
+  },
+  "only_main_content": {
+    "description": "只提取正文",
+    "type": "bool",
+    "default": true,
+    "hint": "去掉导航栏、页脚等噪音内容。"
+  },
+  "max_content_chars": {
+    "description": "返回内容最大字符数",
+    "type": "int",
+    "default": 20000,
+    "hint": "超出部分会被截断并注明原文长度，避免单次工具返回撑爆上下文。"
+  },
+  "search_with_content": {
+    "description": "搜索时同时抓取正文",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后搜索结果的每条记录都会附带正文，返回体明显变大，建议只在对内容质量要求高时启用。"
+  },
+  "verify_ssl": {
+    "description": "校验 HTTPS 证书",
+    "type": "bool",
+    "default": true,
+    "hint": "自建实例使用自签名证书时关闭。"
+  },
+  "command_enabled": {
+    "description": "启用 /firecrawl 命令",
+    "type": "bool",
+    "default": true,
+    "hint": "关闭后仍保留两个 LLM 工具，只是不再响应聊天指令。"
+  }
+}
